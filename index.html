@@ -21,7 +21,7 @@
     <link rel="alternative" href="/atom.xml" title="jerryfang blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/assets/images/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -45,7 +45,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/images/avatar.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/"></a></h1>
@@ -58,6 +58,8 @@
 				<li><a href="/">主页</a></li>
 	        
 				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+	        
+				<li><a href="/tags/web/">WEB</a></li>
 	        
 			</ul>
 		</nav>
@@ -103,13 +105,15 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/images/avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author"></h1>
 			</hgroup>
 			
 			
+			
+				
 			
 				
 			
@@ -132,12 +136,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/tags/web/">WEB</a></li>
 		        
 				</ul>
 			</nav>
@@ -154,77 +160,69 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-==和===不得不说的故事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-闭包的秘密" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/15/==%E5%92%8C===%E4%B8%8D%E5%BE%97%E4%B8%8D%E8%AF%B4%E7%9A%84%E6%95%85%E4%BA%8B/">js==和===不得不说的故事</a>
+      <a class="article-title" href="/2020/12/02/%E9%97%AD%E5%8C%85%E7%9A%84%E7%A7%98%E5%AF%86/">闭包的秘密</a>
     </h1>
   
 
         
-        <a href="/2021/03/15/==%E5%92%8C===%E4%B8%8D%E5%BE%97%E4%B8%8D%E8%AF%B4%E7%9A%84%E6%95%85%E4%BA%8B/" class="archive-article-date">
-  	<time datetime="2021-03-15T09:37:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
+        <a href="/2020/12/02/%E9%97%AD%E5%8C%85%E7%9A%84%E7%A7%98%E5%AF%86/" class="archive-article-date">
+  	<time datetime="2020-12-02T10:39:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>在javascript的判断符号中，除了<code>==</code>还有<code>===</code>。</strong></p>
-<p><strong>但在使用中你会发现，<code>===</code>跟其他编程语言中的判断符号相差无几，<code>==</code>反而不一样，它有独特的个性。</strong></p>
-<p><strong>以下我主要会对<code>==</code>的特性进行简单概括。</strong></p>
-<br>
-
-
-
-<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
-<li><code>===</code>，判断符号两端的类型与数值，当类型与数值都相同时才认为双方相同。</li>
-<li><code>==</code>，基本与上面一样，但符号两端的类型为基本(简单)类型时，会进行一定转换后判断。</li>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>闭包的释义有很多，这里我把它简单概括为闭合并包含。</strong></p>
+<p><strong>闭合即闭包内是封闭的外界无法探查，包含即闭包内包含对外界的引用。</strong></p>
+<p><strong>闭包本质上还是对自己作用域外的量进行使用。</strong><br><br></p>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><ul>
+<li>作用域可以不严谨的理解为，一个定义的变量有效的范围。</li>
+<li>在ES5前，JavaScript中的作用域以函数(Function)划分，ES6后多一个const、let、class支持的块级作用域({})。</li>
+<li>这里我将作用域分为两类关系，<code>同级作用域</code>与<code>父子级作用域</code>关系，闭包允许子级引用父级作用域内的量。</li>
 </ul>
-<br>
-
-
-
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="number-string"><a href="#number-string" class="headerlink" title="number == string"></a>number == string</h3><p>双方会转成string后判断。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> == <span class="string">&#x27;0&#x27;</span> <span class="comment">// true</span></span><br><span class="line"><span class="number">1</span> == <span class="string">&#x27;1&#x27;</span> <span class="comment">// true</span></span><br><span class="line"><span class="number">2</span> == <span class="string">&#x27;2&#x27;</span> <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span> == <span class="string">&#x27;1&#x27;</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-
-
-<h3 id="number-string-boolean"><a href="#number-string-boolean" class="headerlink" title="number/string == boolean"></a>number/string == boolean</h3><p>当<code>number</code>与<code>boolean</code>类型判断时，只有<code>0</code>和<code>1</code>会转成<code>false</code>和<code>true</code>，其余数字不会转换，即判断都为false。</p>
-<p>当<code>string</code>与<code>boolean</code>类型判断时，只有<code>空字符串</code>、<code>&#39;0&#39;</code>、<code>&#39;1&#39;</code>会转成<code>false</code>、<code>false</code>、<code>true</code>，其余字符不会转换。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> == <span class="literal">false</span> &amp;&amp; <span class="string">&#x27;0&#x27;</span> == <span class="literal">false</span> &amp;&amp; <span class="string">&#x27;&#x27;</span> == <span class="literal">false</span> <span class="comment">// true</span></span><br><span class="line"><span class="number">1</span> == <span class="literal">true</span> &amp;&amp; <span class="string">&#x27;1&#x27;</span> == <span class="literal">true</span> <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">-<span class="number">1</span> == <span class="literal">false</span>  <span class="comment">// false</span></span><br><span class="line">-<span class="number">1</span> == <span class="literal">true</span>   <span class="comment">// false</span></span><br><span class="line"><span class="string">&#x27;2&#x27;</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br><span class="line"><span class="string">&#x27;2&#x27;</span> == <span class="literal">true</span>  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-
-
-<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>在js中<code>==</code>有可能会给你带来一些错误的观点，如</p>
-<ul>
-<li><p>因为：’0’<code>==</code>false 返回 true</p>
-</li>
-<li><p>所以：if (‘0’) 的条件内容不会被执行</p>
-</li>
+<h3 id="同级作用域关系"><a href="#同级作用域关系" class="headerlink" title="同级作用域关系"></a>同级作用域关系</h3><ul>
+<li>如下：A、B为同级作用域，各自的作用域相互独立，无法引用。</li>
 </ul>
-<p>然而事实上，if (‘0’) 属于可执行条件，于是你猜想同理if(0)也应该是可执行条件。</p>
-<p>那么你又双错了，事实上js中只有falsy值才属于不执行条件，其余皆为可执行条件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> vA = <span class="string">&#x27;AAA&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(vA);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">B(); <span class="comment">// Error: vA is not defined</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="父子级作用域关系"><a href="#父子级作用域关系" class="headerlink" title="父子级作用域关系"></a>父子级作用域关系</h3><ul>
+<li>如下：Parent、Child为父子级作用域。JS中，父级作用域会涵盖到子级，子级可以一直向上的访问父级、父级的父级…，一直到根(全局)。</li>
+<li>对于任意一个量，优先找自身作用域，没找到才找父级作用域，依旧没有才接着上，直到全局都没有才报错(这叫亲疏有别)。</li>
+<li>相反，子级作用域扩散不到父级，父级是无法访问自己的子级内定义的量(这叫你爸妈遗传基因给你，但你没法反向遗传)。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parent</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> vParent = <span class="string">&#x27;AAA&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">child</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    	<span class="keyword">var</span> vChild = <span class="string">&#x27;aaa&#x27;</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(vParent);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    child(); <span class="comment">// AAA</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">console</span>.log(vChild); <span class="comment">// Error: vChild is not defined</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">parent(); </span><br></pre></td></tr></table></figure>
 <br>
 
 
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="异步与闭包引起数据不同步"><a href="#异步与闭包引起数据不同步" class="headerlink" title="异步与闭包引起数据不同步"></a>异步与闭包引起数据不同步</h3><ul>
+<li>补充一点知识，无论是浏览器还是nodejs，都是先执行完同步代码再执行异步队列。</li>
+<li>现在通过闭包的特点，就能很好的理解为什么下面输出都是10。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (; count &lt; <span class="number">10</span>; count++) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(count);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="falsy值"><a href="#falsy值" class="headerlink" title="falsy值"></a>falsy值</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy">更多参看MDN</a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">false</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">null</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">undefined</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">0</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">0n</span>) <span class="comment">// BigInt 类型的 0</span></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">NaN</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">``</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.all)</span><br></pre></td></tr></table></figure>
+<h3 id="解决数据不同步-套娃作用域"><a href="#解决数据不同步-套娃作用域" class="headerlink" title="解决数据不同步(套娃作用域)"></a>解决数据不同步(套娃作用域)</h3><ul>
+<li>怎么解决？(不考虑let与const的情况下)当然是谁挖的坑，谁来填。</li>
+<li>只要让setTimeout内的函数每次找到的都是循环当次下的量，而不是结束时的就行了，所以想个法子记录下来。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (; count &lt; <span class="number">10</span>; count++) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">temp</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> tempCount = count;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(tempCount);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    temp();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 如果你嫌弃上面繁琐，当然可以利用匿名函数简化代码</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">for</span> (; count &lt; <span class="number">10</span>; count++) &#123;</span><br><span class="line">    !<span class="function"><span class="keyword">function</span> (<span class="params">count</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(count);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;(count);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+<h3 id="利用闭包实现节流"><a href="#利用闭包实现节流" class="headerlink" title="利用闭包实现节流"></a>利用闭包实现节流</h3><ul>
+<li>节流：无论短时间内调用多少次，函数都按自己的节奏一段时间内只执行一次并结束。多次调用并不会产生全部调用的队列。</li>
+<li>防抖的实现基本同理，这里就不做演示了(不会你就百度鸭)。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span> (<span class="params">callback, delay</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> isRunning = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isRunning) &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">        isRunning = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            callback.apply(<span class="built_in">this</span>, args);</span><br><span class="line">            isRunning = <span class="literal">false</span>;</span><br><span class="line">        &#125;, delay);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line"><span class="keyword">let</span> throttleConsole = throttle(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log.apply(<span class="built_in">console</span>, <span class="built_in">arguments</span>);</span><br><span class="line">&#125;, <span class="number">500</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        throttleConsole(i+<span class="number">1</span>)</span><br><span class="line">    &#125;, i*<span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * * 如果你有使用箭头函数的习惯，代码还可以进一步简化。</span></span><br><span class="line"><span class="comment"> * * 但是注意箭头函数中arguments、this、super、new.target 全都来自父作用域，自身没有。</span></span><br><span class="line"><span class="comment"> * * 如果恰巧箭头函数的外面就是全局作用域了，你有使用上述特殊关键字很可能会迎来程序出错。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span> (<span class="params">callback, delay</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> isRunning = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isRunning) &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">        isRunning = <span class="literal">true</span>;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            callback.apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">            isRunning = <span class="literal">false</span>;</span><br><span class="line">        &#125;, delay);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <br>
 
-
-
-<h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><p>最后的最后，如果不想被打爆狗头，从此忘了<code>==</code>吧。</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>如果你仔细观察的话，我全局没有用过<code>let</code>和<code>const</code>关键字，没错如果你能够习惯性使用<code>let</code>和<code>const</code>，你将被动的避免很多问题。<br>当然如果项目环境的要求比较苛刻无法使用es6，并且你还没使用过打包工具，你真应该试试<a target="_blank" rel="noopener" href="https://webpack.js.org/">webpack</a>，配合<a target="_blank" rel="noopener" href="https://babeljs.io/">babel</a>将极大的提高你的效率。</p>
 
       
 
@@ -240,30 +238,144 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记/javascript//" class="article-tag-list-link color1">javascript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
         		</li>
       		
 		</ul>
 	</div>
 
+      
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/15/==%E5%92%8C===%E4%B8%8D%E5%BE%97%E4%B8%8D%E8%AF%B4%E7%9A%84%E6%95%85%E4%BA%8B/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/12/02/%E9%97%AD%E5%8C%85%E7%9A%84%E7%A7%98%E5%AF%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-==和===不得不说的故事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/02/==%E5%92%8C===%E4%B8%8D%E5%BE%97%E4%B8%8D%E8%AF%B4%E7%9A%84%E6%95%85%E4%BA%8B/">==和===不得不说的故事</a>
+    </h1>
+  
+
+        
+        <a href="/2020/12/02/==%E5%92%8C===%E4%B8%8D%E5%BE%97%E4%B8%8D%E8%AF%B4%E7%9A%84%E6%95%85%E4%BA%8B/" class="archive-article-date">
+  	<time datetime="2020-12-02T09:37:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>在javascript的判断符号中，除了<code>==</code>还有<code>===</code>。</strong></p>
+<p><strong>但在使用中你会发现，<code>===</code>跟其他编程语言中的判断符号相差无几，<code>==</code>反而不一样，它有独特的个性。</strong></p>
+<p><strong>以下我主要会对<code>==</code>的特性进行简单概括。</strong><br><br></p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
+<li><code>===</code>，判断符号两端的类型与数值，当类型与数值都相同时才认为双方相同。</li>
+<li><code>==</code>，基本与上面一样，但符号两端的类型为基本(简单)类型时，会进行一定转换后判断。</li>
+</ul>
+<br>
+
+
+
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="number-string"><a href="#number-string" class="headerlink" title="number == string"></a>number == string</h3><p>双方会转成string后判断。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> == <span class="string">&#x27;0&#x27;</span> <span class="comment">// true</span></span><br><span class="line"><span class="number">1</span> == <span class="string">&#x27;1&#x27;</span> <span class="comment">// true</span></span><br><span class="line"><span class="number">2</span> == <span class="string">&#x27;2&#x27;</span> <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span> == <span class="string">&#x27;1&#x27;</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="number-string-boolean"><a href="#number-string-boolean" class="headerlink" title="number/string == boolean"></a>number/string == boolean</h3><p>当<code>number</code>与<code>boolean</code>类型判断时，只有<code>0</code>和<code>1</code>会转成<code>false</code>和<code>true</code>，其余数字不会转换，即判断都为false。<br>当<code>string</code>与<code>boolean</code>类型判断时，只有<code>空字符串</code>、<code>&#39;0&#39;</code>、<code>&#39;1&#39;</code>会转成<code>false</code>、<code>false</code>、<code>true</code>，其余字符不会转换。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> == <span class="literal">false</span> &amp;&amp; <span class="string">&#x27;0&#x27;</span> == <span class="literal">false</span> &amp;&amp; <span class="string">&#x27;&#x27;</span> == <span class="literal">false</span> <span class="comment">// true</span></span><br><span class="line"><span class="number">1</span> == <span class="literal">true</span> &amp;&amp; <span class="string">&#x27;1&#x27;</span> == <span class="literal">true</span> <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">-<span class="number">1</span> == <span class="literal">false</span>  <span class="comment">// false</span></span><br><span class="line">-<span class="number">1</span> == <span class="literal">true</span>   <span class="comment">// false</span></span><br><span class="line"><span class="string">&#x27;2&#x27;</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br><span class="line"><span class="string">&#x27;2&#x27;</span> == <span class="literal">true</span>  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>在js中<code>==</code>有可能会给你带来一些错误的观点，如</p>
+<ul>
+<li>因为：’0’<code>==</code>false 返回 true</li>
+<li>所以：if (‘0’) 的条件内容不会被执行<br>然而事实上，if (‘0’) 属于可执行条件，于是你猜想同理if(0)也应该是可执行条件。<br>那么你又双错了，事实上js中只有falsy值才属于不执行条件，其余皆为可执行条件。</li>
+</ul>
+<br>
+
+
+
+
+<h2 id="falsy值"><a href="#falsy值" class="headerlink" title="falsy值"></a>falsy值</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">false</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">null</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">undefined</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">0</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">0n</span>) <span class="comment">// BigInt 类型的 0</span></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">NaN</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">``</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.all)</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy">更多参看MDN</a></p>
+<br>
+
+
+
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>最后的最后，如果不想被打爆狗头，从此忘了<code>==</code>吧。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/12/02/==%E5%92%8C===%E4%B8%8D%E5%BE%97%E4%B8%8D%E8%AF%B4%E7%9A%84%E6%95%85%E4%BA%8B/">展开全文 >></a>
         </p>
       
 
@@ -313,16 +425,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Promise 的字面直译是承诺。<br>MDN上的解释是，Promise是一个对象，它代表了一个异步操作的最终完成或者失败。<br>从使用上来看，Promise是对异步回调的一种新的解决方案，让异步更加灵活，还可以摆脱令人僵硬的三角结构。</p>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>Promise 的字面直译是承诺。</strong></p>
+<p><strong>MDN上的解释是，Promise是一个对象，它代表了一个异步操作的最终完成或者失败。</strong></p>
+<p><strong>从使用上来看，Promise是对异步回调的一种新的解决方案，让异步更加灵活，还可以摆脱令人僵硬的三角结构。</strong><br><br></p>
 <h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="没有Promise时的面对连续的异步"><a href="#没有Promise时的面对连续的异步" class="headerlink" title="没有Promise时的面对连续的异步"></a>没有Promise时的面对连续的异步</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">asyncFunction1(<span class="function">(<span class="params">data1</span>) =&gt;</span>&#123;</span><br><span class="line">    asyncFunction2(<span class="function">(<span class="params">data2</span>) =&gt;</span> &#123;</span><br><span class="line">        asyncFunction3(<span class="function">(<span class="params">data3</span>) =&gt;</span> &#123;</span><br><span class="line">            asyncFunction4(<span class="function">(<span class="params">data4</span>) =&gt;</span> &#123;</span><br><span class="line">                asyncFunction5(<span class="function">(<span class="params">data5</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="comment">// 瞧瞧这优美的三角结构，这可是只有纯粹的异步才能独享的moment</span></span><br><span class="line">                    <span class="built_in">console</span>.log(data5);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
 
 
 <h3 id="有Promise时的面对连续的异步"><a href="#有Promise时的面对连续的异步" class="headerlink" title="有Promise时的面对连续的异步"></a>有Promise时的面对连续的异步</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    asyncFunction1(<span class="function">(<span class="params">data1</span>) =&gt;</span> &#123; resolve(data1); &#125;);</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">(<span class="params">data1</span>) =&gt;</span> &#123;</span><br><span class="line">    asyncFunction2(<span class="function">(<span class="params">data2</span>) =&gt;</span> &#123; <span class="keyword">return</span> data2; &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中途随意出去做了点事</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;do something&#x27;</span>)</span><br><span class="line"></span><br><span class="line">p.then(<span class="function">(<span class="params">data2</span>) =&gt;</span> &#123;</span><br><span class="line">    asyncFunction3(<span class="function">(<span class="params">data3</span>) =&gt;</span> &#123; <span class="keyword">return</span> data3; &#125;);</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">(<span class="params">data3</span>) =&gt;</span> &#123;</span><br><span class="line">    asyncFunction4(<span class="function">(<span class="params">data4</span>) =&gt;</span> &#123; <span class="keyword">return</span> data4; &#125;);</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">(<span class="params">data4</span>) =&gt;</span> &#123;</span><br><span class="line">    asyncFunction5(<span class="function">(<span class="params">data5</span>) =&gt;</span> &#123; <span class="keyword">return</span> data5; &#125;);</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">(<span class="params">data5</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 优美三角的陨落</span></span><br><span class="line">    <span class="built_in">console</span>.log(data5);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <br>
 
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><h3 id="new-Promise-excutor-Function"><a href="#new-Promise-excutor-Function" class="headerlink" title="new Promise(excutor: Function)"></a>new Promise(excutor: Function)</h3><p>创建Promise时传入的函数，将在Promise的构造函数中同步执行。</p>
+<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><h3 id="new-Promise-excutor-Function"><a href="#new-Promise-excutor-Function" class="headerlink" title="new Promise(excutor: Function)"></a>new Promise(excutor: Function)</h3><ul>
+<li>创建Promise时传入的函数，将在Promise的构造函数中同步执行。</li>
+</ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ....</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">       <span class="keyword">let</span> result =  doSomething();</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">        resolve(result); <span class="comment">// 完成</span></span><br><span class="line">    &#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">        reject(error)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
 
 <p>上面的执行结果为：</p>
@@ -332,37 +447,51 @@
 
 
 
-<h2 id="实例-原型-方法"><a href="#实例-原型-方法" class="headerlink" title="实例(原型)方法"></a>实例(原型)方法</h2><h3 id="then-onFulfilled-Function-onRejected-Function"><a href="#then-onFulfilled-Function-onRejected-Function" class="headerlink" title="then(onFulfilled: Function, onRejected: Function)"></a>then(onFulfilled: Function, onRejected: Function)</h3><p>then接收两个函数，操作成功和失败的回调函数。<br>该回调函数会以异步的方式执行。</p>
+<h2 id="实例-原型-方法"><a href="#实例-原型-方法" class="headerlink" title="实例(原型)方法"></a>实例(原型)方法</h2><h3 id="then-onFulfilled-Function-onRejected-Function"><a href="#then-onFulfilled-Function-onRejected-Function" class="headerlink" title="then(onFulfilled: Function, onRejected: Function)"></a>then(onFulfilled: Function, onRejected: Function)</h3><ul>
+<li>then接收两个函数，操作成功和失败的回调函数。</li>
+<li>该回调函数会以异步的方式执行。</li>
+</ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">        resolve(<span class="number">3</span>); <span class="comment">// 完成</span></span><br><span class="line">    &#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">        reject(error)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
 
-<p>上面的执行结果为：</p>
+<ul>
+<li>上面的执行结果为：</li>
+</ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">4</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
 
-<p>then实际会返回一个新的Promise实例，所以then可以无限链式下去。<br>在then的链式中，下一个then的调用由上一个then的结果决定。</p>
+<ul>
+<li>then实际会返回一个新的Promise实例，所以then可以无限链式下去。</li>
+<li>在then的链式中，下一个then的调用由上一个then的结果决定。</li>
+</ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">	resolve(); </span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;第一个then的成功回调&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;第二个then的成功回调&#x27;</span>)</span><br><span class="line">&#125;, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;第二个then的失败回调&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;第三个then的成功回调&#x27;</span>)</span><br><span class="line">&#125;, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;第三个then的失败回调&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>上面的执行结果为：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">第二个<span class="keyword">then</span>的失败回调</span><br><span class="line">第三个<span class="keyword">then</span>的成功回调</span><br></pre></td></tr></table></figure>
 
-<br>
 
-<h3 id="catch-onRejected-Function"><a href="#catch-onRejected-Function" class="headerlink" title="catch(onRejected: Function)"></a>catch(onRejected: Function)</h3><p>如果then的调用链中都没有指定onRejected函数，那么Promise会补一个onRejected继续传递错误的回调。<br>该默认onRejected错会调用下一个then的onRejected从而把错误下传，直至遇到自定义的onRejected。<br>catch实质上就是在最后接一个有onRejected的then。</p>
+<h3 id="catch-onRejected-Function"><a href="#catch-onRejected-Function" class="headerlink" title="catch(onRejected: Function)"></a>catch(onRejected: Function)</h3><ul>
+<li>如果then的调用链中都没有指定onRejected函数，那么Promise会补一个onRejected继续传递错误的回调。</li>
+<li>该默认onRejected错会调用下一个then的onRejected从而把错误下传，直至遇到自定义的onRejected。</li>
+<li>catch实质上类似在最后加一个有onRejected的then。</li>
+</ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">	resolve(); </span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;第一个then的成功回调&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;第二个then的成功回调&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;第三个then的成功回调&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;第四个then的成功回调&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<p>上面的执行结果为：</p>
+<ul>
+<li>上面的执行结果为：</li>
+</ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error: 第一个<span class="keyword">then</span>的成功回调</span><br><span class="line">第四个<span class="keyword">then</span>的成功回调</span><br></pre></td></tr></table></figure>
 
 <br>
 
 
-
-<h2 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h2><h3 id="all-promises-iterable"><a href="#all-promises-iterable" class="headerlink" title="all(promises: iterable)"></a>all(promises: iterable)</h3><p>all 接收一个promise的iterable类型（Array，Map，Set都属于ES6的iterable类型），返回一个Promise。<br>all接收多个Promise实例，所有实例都成功执行，则执行成功回调，任意一个出错执行失败的回调。</p>
+<h2 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h2><h3 id="all-promises-iterable"><a href="#all-promises-iterable" class="headerlink" title="all(promises: iterable)"></a>all(promises: iterable)</h3><ul>
+<li>all 接收一个promise的iterable类型（Array，Map，Set都属于ES6的iterable类型），返回一个Promise。</li>
+<li>all接收多个Promise实例，所有实例都成功执行，则执行成功回调，任意一个出错执行失败的回调。</li>
+</ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; </span><br><span class="line">        <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">let</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; </span><br><span class="line">        <span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.all([p1, p2])</span><br><span class="line">.then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>上面的执行结果为：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
 
-<br>
 
 <h3 id="race-promises-iterable-类方法"><a href="#race-promises-iterable-类方法" class="headerlink" title="race(promises: iterable) 类方法"></a>race(promises: iterable) 类方法</h3><p>race与all一样接收一个promise的iterable类型，返回一个Promise。<br>all接收多个Promise实例，任何一个先执行完成promise的回调决定 race的回调。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; </span><br><span class="line">        <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;, <span class="number">100</span>)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">let</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; </span><br><span class="line">        <span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;, <span class="number">200</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.race([p1, p2])</span><br><span class="line">.then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
@@ -385,26 +514,19 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        		</li>
       		
 		</ul>
 	</div>
 
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记/javascript//" class="article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
         <p class="article-more-link">
@@ -482,17 +604,6 @@
 	</div>
 
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/生活随笔//" class="article-tag-list-link color5">生活随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
         <p class="article-more-link">
@@ -624,6 +735,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
             
             <div class="clearfix"></div>

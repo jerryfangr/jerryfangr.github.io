@@ -154,6 +154,145 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-==和===不得不说的故事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/15/==%E5%92%8C===%E4%B8%8D%E5%BE%97%E4%B8%8D%E8%AF%B4%E7%9A%84%E6%95%85%E4%BA%8B/">js==和===不得不说的故事</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/15/==%E5%92%8C===%E4%B8%8D%E5%BE%97%E4%B8%8D%E8%AF%B4%E7%9A%84%E6%95%85%E4%BA%8B/" class="archive-article-date">
+  	<time datetime="2021-03-15T09:37:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>在javascript的判断符号中，除了<code>==</code>还有<code>===</code>。</strong></p>
+<p><strong>但在使用中你会发现，<code>===</code>跟其他编程语言中的判断符号相差无几，<code>==</code>反而不一样，它有独特的个性。</strong></p>
+<p><strong>以下我主要会对<code>==</code>的特性进行简单概括。</strong></p>
+<br>
+
+
+
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
+<li><code>===</code>，判断符号两端的类型与数值，当类型与数值都相同时才认为双方相同。</li>
+<li><code>==</code>，基本与上面一样，但符号两端的类型为基本(简单)类型时，会进行一定转换后判断。</li>
+</ul>
+<br>
+
+
+
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="number-string"><a href="#number-string" class="headerlink" title="number == string"></a>number == string</h3><p>双方会转成string后判断。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> == <span class="string">&#x27;0&#x27;</span> <span class="comment">// true</span></span><br><span class="line"><span class="number">1</span> == <span class="string">&#x27;1&#x27;</span> <span class="comment">// true</span></span><br><span class="line"><span class="number">2</span> == <span class="string">&#x27;2&#x27;</span> <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span> == <span class="string">&#x27;1&#x27;</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+
+<h3 id="number-string-boolean"><a href="#number-string-boolean" class="headerlink" title="number/string == boolean"></a>number/string == boolean</h3><p>当<code>number</code>与<code>boolean</code>类型判断时，只有<code>0</code>和<code>1</code>会转成<code>false</code>和<code>true</code>，其余数字不会转换，即判断都为false。</p>
+<p>当<code>string</code>与<code>boolean</code>类型判断时，只有<code>空字符串</code>、<code>&#39;0&#39;</code>、<code>&#39;1&#39;</code>会转成<code>false</code>、<code>false</code>、<code>true</code>，其余字符不会转换。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> == <span class="literal">false</span> &amp;&amp; <span class="string">&#x27;0&#x27;</span> == <span class="literal">false</span> &amp;&amp; <span class="string">&#x27;&#x27;</span> == <span class="literal">false</span> <span class="comment">// true</span></span><br><span class="line"><span class="number">1</span> == <span class="literal">true</span> &amp;&amp; <span class="string">&#x27;1&#x27;</span> == <span class="literal">true</span> <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">-<span class="number">1</span> == <span class="literal">false</span>  <span class="comment">// false</span></span><br><span class="line">-<span class="number">1</span> == <span class="literal">true</span>   <span class="comment">// false</span></span><br><span class="line"><span class="string">&#x27;2&#x27;</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br><span class="line"><span class="string">&#x27;2&#x27;</span> == <span class="literal">true</span>  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>在js中<code>==</code>有可能会给你带来一些错误的观点，如</p>
+<ul>
+<li><p>因为：’0’<code>==</code>false 返回 true</p>
+</li>
+<li><p>所以：if (‘0’) 的条件内容不会被执行</p>
+</li>
+</ul>
+<p>然而事实上，if (‘0’) 属于可执行条件，于是你猜想同理if(0)也应该是可执行条件。</p>
+<p>那么你又双错了，事实上js中只有falsy值才属于不执行条件，其余皆为可执行条件。</p>
+<br>
+
+
+
+<h2 id="falsy值"><a href="#falsy值" class="headerlink" title="falsy值"></a>falsy值</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy">更多参看MDN</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">false</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">null</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">undefined</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">0</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">0n</span>) <span class="comment">// BigInt 类型的 0</span></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">NaN</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">``</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.all)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+
+<h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><p>最后的最后，如果不想被打爆狗头，从此忘了<code>==</code>吧。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/学习笔记/javascript//" class="article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/15/==%E5%92%8C===%E4%B8%8D%E5%BE%97%E4%B8%8D%E8%AF%B4%E7%9A%84%E6%95%85%E4%BA%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Promise的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

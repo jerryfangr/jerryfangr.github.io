@@ -16,7 +16,7 @@
 <meta property="og:description" content="介绍在javascript的判断符号中，除了&#x3D;&#x3D;还有&#x3D;&#x3D;&#x3D;。 但在使用中你会发现，&#x3D;&#x3D;&#x3D;跟其他编程语言中的判断符号相差无几，&#x3D;&#x3D;反而不一样，它有独特的个性。 以下我主要会对&#x3D;&#x3D;的特性进行简单概括。 特性 &#x3D;&#x3D;&#x3D;，判断符号两端的类型与数值，当类型与数值都相同时才认为双方相同。 &#x3D;&#x3D;，基本与上面一样，但符号两端的类型为基本(简单)类型时，会进行一定转换后判断。      示例number &#x3D;&#x3D; str">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-02T09:37:51.000Z">
-<meta property="article:modified_time" content="2021-03-15T14:57:24.745Z">
+<meta property="article:modified_time" content="2021-04-11T03:26:06.724Z">
 <meta property="article:author" content="jerry fang">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="学习笔记">
@@ -207,8 +207,16 @@
 
 <h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>在js中<code>==</code>有可能会给你带来一些错误的观点，如</p>
 <ul>
-<li>因为：’0’<code>==</code>false 返回 true</li>
-<li>所以：if (‘0’) 的条件内容不会被执行<br>然而事实上，if (‘0’) 属于可执行条件，于是你猜想同理if(0)也应该是可执行条件。<br>那么你又双错了，事实上js中只有falsy值才属于不执行条件，其余皆为可执行条件。</li>
+<li><p>因为：’0’<code>==</code>false 返回 true</p>
+</li>
+<li><p>所以：if (‘0’) 的条件内容不会被执行<br>然而事实上，if (‘0’) 属于可执行条件，于是你猜想同理if(0)也应该是可执行条件。<br>那么你又双错了，事实上js中只有falsy值才属于不执行条件，其余皆为可执行条件。</p>
+</li>
+<li><p>顺带注意下特殊的<code>NAN</code>，它与任意不相等，这里举例以下特性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">NaN</span> == <span class="literal">NaN</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">NaN</span> === <span class="literal">NaN</span> <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">NaN</span> <span class="comment">// &quot;number&quot;</span></span><br><span class="line"><span class="literal">NaN</span> <span class="keyword">instanceof</span> <span class="built_in">Number</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
 <br>
 
@@ -222,7 +230,7 @@
 
 
 
-<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>最后的最后，如果不想被打爆狗头，从此忘了<code>==</code>吧。</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>尝试习惯用<code>===</code>来判断，少用<code>==</code>，这会让你避免不少问题。</p>
 
       
 

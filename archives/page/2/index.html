@@ -6,21 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://jerryfangr.github.io">
-  <title>async与await | jerryfang blog</title>
+  <title>Archives | jerryfang blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="介绍如果说Promise的出现是为了解决异步又长又臭的回调问题，使之更加灵活。那async与await的出现，就是为了让你感觉不到异步与同步书写的区别，是目前异步的终极解决方案 使用在正式使用前，先看一个Generator的示例 假设有这么一个异步函数，用于获取数据  123456789101112function fetchData(number) &amp;#123;    return new Pr">
-<meta property="og:type" content="article">
-<meta property="og:title" content="async与await">
-<meta property="og:url" content="https://jerryfangr.github.io/2021/01/14/async%E4%B8%8Eawait/index.html">
+  <meta name="description" content="木有鱼丸">
+<meta property="og:type" content="website">
+<meta property="og:title" content="jerryfang blog">
+<meta property="og:url" content="https://jerryfangr.github.io/archives/page/2/index.html">
 <meta property="og:site_name" content="jerryfang blog">
-<meta property="og:description" content="介绍如果说Promise的出现是为了解决异步又长又臭的回调问题，使之更加灵活。那async与await的出现，就是为了让你感觉不到异步与同步书写的区别，是目前异步的终极解决方案 使用在正式使用前，先看一个Generator的示例 假设有这么一个异步函数，用于获取数据  123456789101112function fetchData(number) &amp;#123;    return new Pr">
+<meta property="og:description" content="木有鱼丸">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-01-14T09:02:57.000Z">
-<meta property="article:modified_time" content="2021-01-20T16:12:24.240Z">
 <meta property="article:author" content="jerry fang">
-<meta property="article:tag" content="javascript">
-<meta property="article:tag" content="学习笔记">
-<meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="jerryfang blog" type="application/atom+xml">
@@ -151,251 +146,63 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-async与await" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      async与await
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/12/01/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/" class="archive-article-date">
+  	<time datetime="2020-12-01T07:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-01</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/12/01/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/">开博大吉</a>
     </h1>
   
 
-        
-        <a href="/2021/01/14/async%E4%B8%8Eawait/" class="archive-article-date">
-  	<time datetime="2021-01-14T09:02:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>如果说Promise的出现是为了解决异步又长又臭的回调问题，使之更加灵活。</strong><br><strong>那async与await的出现，就是为了让你感觉不到异步与同步书写的区别，是目前异步的终极解决方案</strong><br><br></p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="在正式使用前，先看一个Generator的示例"><a href="#在正式使用前，先看一个Generator的示例" class="headerlink" title="在正式使用前，先看一个Generator的示例"></a>在正式使用前，先看一个Generator的示例</h3><ul>
-<li><strong>假设有这么一个异步函数，用于获取数据</strong></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fetchData</span>(<span class="params">number</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        number++;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            resolve(&#123;</span><br><span class="line">                number: number,</span><br><span class="line">                data: <span class="string">&#x27;data-&#x27;</span> + number</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;, <span class="number">200</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>现在构建一个Generator用于获取第四轮的数据</strong></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">genGet</span>(<span class="params">startNumber</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;1&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> data = <span class="keyword">yield</span> fetchData(startNumber);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;2&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    data = <span class="keyword">yield</span> fetchData(data.number);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;3&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    data = <span class="keyword">yield</span> fetchData(data.number);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;END fetch: &#x27;</span>, data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>Generator执行</strong></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">runGen</span>(<span class="params">genInstance, value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = genInstance.next(value);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (!result.done) &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (result.value <span class="keyword">instanceof</span> <span class="built_in">Promise</span>) &#123;</span><br><span class="line">                result.value.then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">                    runGen(genInstance, data);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                runGen(genInstance, result.value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">runGen(genGet(<span class="number">1</span>));</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>执行结果</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">END fetch:  &#123;number: 4, data: &quot;data-4&quot;&#125;</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="现在把上面的换成async与await"><a href="#现在把上面的换成async与await" class="headerlink" title="现在把上面的换成async与await"></a>现在把上面的换成async与await</h3><ul>
-<li><strong>构建一个async用于获取第四轮的数据</strong></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fetchData</span>(<span class="params">number</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        number++;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            resolve(&#123;</span><br><span class="line">                number: number,</span><br><span class="line">                data: <span class="string">&#x27;data-&#x27;</span> + number</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;, <span class="number">200</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">async</span> <span class="title">asyncGet</span>(<span class="params">startNumber</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;1&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> data = <span class="keyword">await</span> fetchData(startNumber);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;2&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    data = <span class="keyword">await</span> fetchData(data.number);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;3&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    data = <span class="keyword">await</span> fetchData(data.number);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;END fetch: &#x27;</span>, data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">asyncGet(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>执行结果</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">END fetch:  &#123;number: 4, data: &quot;data-4&quot;&#125;</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="对比Generator-与-async"><a href="#对比Generator-与-async" class="headerlink" title="对比Generator 与 async"></a>对比Generator 与 async</h3><p>那么现在你是否意识到了双方的相似性，async可以理解为一个带自执行co的Generator 的语法糖。</p>
-<br>
-
-<h3 id="正式创建一个基本的async"><a href="#正式创建一个基本的async" class="headerlink" title="正式创建一个基本的async"></a>正式创建一个基本的async</h3><ul>
-<li><strong>创建</strong></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncFun1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncFun2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncFun3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        resolve(<span class="number">111</span>)</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(asyncFun1());</span><br><span class="line"><span class="built_in">console</span>.log(asyncFun2());</span><br><span class="line"><span class="built_in">console</span>.log(asyncFun3());</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>执行结果</strong></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span> &#123;&lt;fulfilled&gt;: <span class="literal">undefined</span>&#125;</span><br><span class="line"><span class="built_in">Promise</span> &#123;&lt;fulfilled&gt;: <span class="number">1</span>&#125;</span><br><span class="line"><span class="built_in">Promise</span> &#123;&lt;pending&gt;&#125;</span><br><span class="line">    [[PromiseState]]: <span class="string">&quot;fulfilled&quot;</span></span><br><span class="line">    [[PromiseResult]]: <span class="number">111</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>特性</strong></li>
-</ul>
-<p>async的返回必然是一个promise。<br>如果返回值为非Promise类型，则返回一个resolve状态，数值为返回值的promise。<br>如果返回值为Promise类型，则返回该promise。</p>
-<br>
-
-<h3 id="await获取数据-有且只能在async函数内使用"><a href="#await获取数据-有且只能在async函数内使用" class="headerlink" title="await获取数据(有且只能在async函数内使用)"></a>await获取数据(有且只能在async函数内使用)</h3><ul>
-<li><strong>创建</strong></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">syncFun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">asyncFun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> data;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        data = <span class="number">2</span>;</span><br><span class="line">    &#125;, <span class="number">200</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">asyncPromiseFun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            resolve(<span class="number">3</span>);</span><br><span class="line">        &#125;, <span class="number">200</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">asyncPromiseFun2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;code 4&#x27;</span>));</span><br><span class="line">        &#125;, <span class="number">200</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncTest</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> data1 = <span class="keyword">await</span> syncFun();</span><br><span class="line">    <span class="keyword">let</span> data2 = <span class="keyword">await</span> asyncFun();</span><br><span class="line">    <span class="keyword">let</span> data3 = <span class="keyword">await</span> asyncPromiseFun();</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;data1: &#x27;</span>, data1);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;data2: &#x27;</span>, data2);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;data3: &#x27;</span>, data3);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> data4 = <span class="keyword">await</span> asyncPromiseFun2();</span><br><span class="line">    &#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(error)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">asyncTest();</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>执行结果</strong></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data1:  <span class="number">1</span></span><br><span class="line">data2:  <span class="literal">undefined</span></span><br><span class="line">data3:  <span class="number">3</span></span><br><span class="line"><span class="built_in">Error</span>: code <span class="number">4</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>特性</strong></li>
-</ul>
-<p>await 右边为非promise的数值，直接返回该数值。<br>await 右边为promise，直接返回该promise的resolve值或throw reject值。<br><br></p>
-<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>异步的解决方案，从 回调 到 promise 到 async&amp;await，已经趋于同步了。<br>显然如今async 与await这样的语法糖比像<a target="_blank" rel="noopener" href="https://github.com/laverdet/node-fibers">node-fibers</a>这样的要更直观，更符合书写逻辑了。</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://jerryfangr.github.io/2021/01/14/async%E4%B8%8Eawait/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2021/01/21/%E8%8A%82%E6%B5%81%E4%B8%8E%E9%98%B2%E6%8A%96/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          节流与防抖
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/12/02/%E9%97%AD%E5%8C%85%E7%9A%84%E7%A7%98%E5%AF%86/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">闭包的秘密</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -419,8 +226,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

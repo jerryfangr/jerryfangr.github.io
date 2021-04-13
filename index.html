@@ -148,6 +148,194 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-flex布局" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/14/flex%E5%B8%83%E5%B1%80/">flex布局</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/14/flex%E5%B8%83%E5%B1%80/" class="archive-article-date">
+  	<time datetime="2021-03-14T10:25:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p><strong><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Flex</a> 弹性布局，最早由W3C于2009年提出。时至今日，flex的布局早已成为了主流的布局方案，尤其体现在一些小程序里。(补充一点，Flex后的Grid布局真正意义上的允许元素在”二维”层面布局，要是早几年提出说不定就没有Flex啥事了)</strong></p>
+<p><strong>新事物往往是为了解决旧事物的痛点才出现，Flex的出现就是为了解决传统依靠margin+padding+display+vert+position+float布局的复杂性，以及在一些特殊布局上的不便性。</strong></p>
+<p><strong>那么以下，我会粗略概括flex的主要用法和特性。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/jerryfangr/pen/BapEVNR">本篇的示例代码 CodePen</a></p>
+<br>
+
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><blockquote>
+<p><strong>以下示例中未作说明的<code>flex-container</code>下的元素都为宽高100px的正方形。</strong></p>
+</blockquote>
+<h3 id="轴的概念"><a href="#轴的概念" class="headerlink" title="轴的概念"></a>轴的概念</h3><p><strong>要在一个平面上表示一个点的位置，那么至少需要一对相互垂直的轴最为参考。</strong></p>
+<p><strong>flex也类似，用相互垂直的”主轴”和”侧轴”来确定一个元素的位置，但不能表示的那么精细，只能确定大致方向。</strong></p>
+<p><strong>如下，为Flex中默认的主侧轴的方向，其中主轴可以修改为垂直方向，侧轴会随之修改为水平方向。</strong></p>
+<p><img src="/assets/images/image-20210428143553537.png" alt="image-20210428143553537"> </p>
+<h3 id="主轴的方向-flex-direction"><a href="#主轴的方向-flex-direction" class="headerlink" title="主轴的方向 flex-direction"></a>主轴的方向 <code>flex-direction</code></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flex-direction: row | row-reverse | column | column-reverse;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>row</code>（默认值）：主轴为水平向右。</li>
+<li><code>row-reverse</code>：主轴为水平向左。</li>
+<li><code>column</code>：主轴为垂直向下。</li>
+<li><code>column-reverse</code>：主轴为垂直向上。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-item&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-item&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-item&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>根据上面的结构，依次改变flex-container的<code>flex-direction</code>属性结果如下。</strong></p>
+<p><img src="/assets/images/image-20210428162702928.png" alt="image-20210428162702928"> <img src="/assets/images/image-20210428162831843.png" alt="image-20210428162831843"> </p>
+<p><img src="/assets/images/image-20210428162915932.png" alt="image-20210428162915932"> <img src="/assets/images/image-20210428163023522.png" alt="image-20210428163023522"> </p>
+<h3 id="主轴换行flex-wrap"><a href="#主轴换行flex-wrap" class="headerlink" title="主轴换行flex-wrap"></a>主轴换行<code>flex-wrap</code></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flex-wrap: nowrap | wrap | wrap-reverse;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>nowrap</code>（默认值）：超出不换行，各个元素按规定比例缩小，默认1:1。</li>
+<li><code>wrap</code>：超出换行。</li>
+<li><code>wrap-reverse</code>：超出换行，但颠倒行区块顺序，非直接交换位置。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-item&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-item&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-item&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-item&quot;</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>根据上面的结构，依次改变flex-container的<code>flex-wrap</code>属性结果如下。</strong></p>
+<p><img src="/assets/images/image-20210428164522908.png" alt="image-20210428164522908"> <img src="/assets/images/image-20210428165106732.png" alt="image-20210428165106732"> </p>
+<p><img src="/assets/images/image-20210428165539312.png" alt="image-20210428165539312"> </p>
+<h3 id="同时设置方向和换行flex-flow"><a href="#同时设置方向和换行flex-flow" class="headerlink" title="同时设置方向和换行flex-flow"></a>同时设置方向和换行<code>flex-flow</code></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="主轴布局justify-content"><a href="#主轴布局justify-content" class="headerlink" title="主轴布局justify-content"></a>主轴布局<code>justify-content</code></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">justify-content: flex-start | flex-end | center | space-between | space-around;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>flex-start</code>（默认值）：起始对齐，如：flex-direction: row 方向从左到右，就是左对齐。</li>
+<li><code>flex-end</code>：末端对齐：如：flex-direction: row 方向从左到右，就是右对齐。</li>
+<li><code>center</code>： 居中</li>
+<li><code>space-between</code>：两端对齐，项目之间的间隔都相等。</li>
+<li><code>space-around</code>：每个项目两侧的间隔相等。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-item&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-item&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-item&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>根据上面的结构，依次改变flex-container的<code>justify-content</code>属性结果如下</strong></p>
+<p><img src="/assets/images/image-20210428170615368.png" alt="image-20210428170615368">  <img src="/assets/images/image-20210428170756152.png" alt="image-20210428170756152">  </p>
+<p><img src="/assets/images/image-20210428170921872.png" alt="image-20210428170921872"> <img src="/assets/images/image-20210428170953911.png" alt="image-20210428170953911"> </p>
+<p><img src="/assets/images/image-20210428171026211.png" alt="image-20210428171026211"> </p>
+<h3 id="侧轴-与主轴垂直交叉的轴-布局align-items"><a href="#侧轴-与主轴垂直交叉的轴-布局align-items" class="headerlink" title="侧轴(与主轴垂直交叉的轴)布局align-items"></a>侧轴(与主轴垂直交叉的轴)布局<code>align-items</code></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">align-items: stretch | flex-start | flex-end | center | baseline;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>stretch</code>（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li>
+<li><code>flex-start</code>：交叉轴的起始对齐。</li>
+<li><code>flex-end</code>：交叉轴的末端对齐。</li>
+<li><code>center</code>：交叉轴的中点对齐，即居中。</li>
+<li><code>baseline</code>: 项目的第一行文字的基线对齐。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;flex-container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;flex-item&quot; style=&quot;height: auto;&quot;&gt;1&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;flex-item&quot;&gt;2&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;flex-item&quot;&gt;3&lt;/div&gt;</span><br><span class="line">&lt;/<span class="selector-tag">div</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>根据上面的结构，依次改变flex-container的<code>align-items</code>属性结果如下</strong></p>
+<p><img src="/assets/images/image-20210428172436372.png" alt="image-20210428172436372"> <img src="/assets/images/image-20210428172514145.png" alt="image-20210428172514145"> </p>
+<p><img src="/assets/images/image-20210428172536071.png" alt="image-20210428172536071"> <img src="/assets/images/image-20210428172624951.png" alt="image-20210428172624951"> </p>
+<p><img src="/assets/images/image-20210428172751242.png" alt="image-20210428172751242"> </p>
+<h3 id="多侧轴布局align-content"><a href="#多侧轴布局align-content" class="headerlink" title="多侧轴布局align-content"></a>多侧轴布局align-content</h3><p><strong>什么叫多轴，不知道你有没有注意到，上面flex-wrap换行，换行自然就多了一行也就多了一条侧轴。</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">align-content: stretch | flex-start | flex-end | center | space-between | space-around;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>stretch</code>（默认值）：轴线占满整个交叉轴。</li>
+<li><code>flex-start</code>：与交叉轴的起点对齐。</li>
+<li><code>flex-end</code>：与交叉轴的终点对齐。</li>
+<li><code>center</code>：与交叉轴的中点对齐。</li>
+<li><code>space-between</code>：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
+<li><code>space-around</code>：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-item&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: auto;&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-item&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: auto;&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-item&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: auto;&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;flex-item&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: auto;&quot;</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>根据上面的结构，依次改变flex-container的<code>align-content</code>属性结果如下</strong></p>
+<p><img src="/assets/images/image-20210428174143851.png" alt="image-20210428174143851"> <img src="/assets/images/image-20210428174356951.png" alt="image-20210428174356951"> </p>
+<p><img src="/assets/images/image-20210428174420131.png" alt="image-20210428174420131"> <img src="/assets/images/image-20210428174445871.png" alt="image-20210428174445871"> </p>
+<p><img src="/assets/images/image-20210428174522632.png" alt="image-20210428174522632"> <img src="/assets/images/image-20210428174555412.png" alt="image-20210428174555412"> </p>
+<h3 id="轴上元素单独定义布局align-self"><a href="#轴上元素单独定义布局align-self" class="headerlink" title="轴上元素单独定义布局align-self"></a>轴上元素单独定义布局<code>align-self</code></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">align-self: auto | flex-start | flex-end | center | baseline | stretch;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>align-self</code> 与 <code>align-items</code>的效果一样，定义后可以不随<code>align-items</code>，单独设置某个元素侧轴布局。</strong></p>
+<h3 id="轴上元素定义顺序order"><a href="#轴上元素定义顺序order" class="headerlink" title="轴上元素定义顺序order"></a>轴上元素定义顺序<code>order</code></h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">order</span>: &lt;<span class="selector-tag">integer</span>&gt;;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>order</code>定义了一个整数，order越大越靠后，越小越接近轴的起始为位置。<code>order</code>相同时由html定义顺序决定。</strong></p>
+<h3 id="轴上元素其余属性"><a href="#轴上元素其余属性" class="headerlink" title="轴上元素其余属性"></a>轴上元素其余属性</h3><p><strong>除了主要的布局相关元素外，flex也提供了一些缩放属性，用于空间多余，不足等情况下缩放元素。</strong></p>
+<p><strong>这里只作简单介绍，具体可以查看结尾的更多</strong></p>
+<p><code>flex-basis</code>属性定义了在分配多余空间之前，项目占据的主轴空间（main size）</p>
+<p><code>flex</code>属性是<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code>的简写默认值为<code>0 1 auto</code>，决定了元素的基本大小，缩放。</p>
+<br>
+
+
+
+<h2 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h2><p><a target="_blank" rel="noopener" href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/">W3C FLEXBOX SPEC</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout/Flexbox">MDN 弹性盒子</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">阮一峰 - Flex 布局教程：语法篇</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2015/07/flex-examples.html">阮一峰 - Flex 布局教程：实例篇</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/14/flex%E5%B8%83%E5%B1%80/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-socket-io共享express的session" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1429,83 +1617,10 @@
 
 
   
-    <article id="post-开博大吉" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/01/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/">开博大吉</a>
-    </h1>
-  
-
-        
-        <a href="/2020/12/01/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/" class="archive-article-date">
-  	<time datetime="2020-12-01T07:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>记录一些格式相对正式的博客日志</strong></p>
-<h2 id="一些唠叨"><a href="#一些唠叨" class="headerlink" title="一些唠叨"></a>一些唠叨</h2><p><strong>早就想要在github之类的开个相对稳定的博客来记录，结果一直嫌麻烦，觉得本地配合Nas记录挺不错的。</strong></p>
-<p><strong>直到真的坏了一块硬盘，幸好组的时候想到了raid5。</strong></p>
-<p><strong>总之抽空搬笔记把，顺带还能润色时复习内容</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/12/01/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -1612,6 +1727,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
             
             <div class="clearfix"></div>

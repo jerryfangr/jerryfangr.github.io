@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://jerryfangr.github.io">
   <title>节流与防抖 | jerryfang blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="介绍节流与防抖属于性能优化的一种手段。节流：函数执行频率无论多高，都只按一定间隔时间触发一次。防抖：函数执行频率无论多高，都只在函数最后一次执行结束后，间隔一定的事件执行一次。 实现节流 创造  123456789101112function createThrottle(delay, callback) &amp;#123;    let allowed &#x3D; true;    return functi">
+  <meta name="description" content="介绍节流与防抖属于性能优化的一种手段。 节流：函数执行频率无论多高，都只按一定间隔时间触发一次。 防抖：函数执行频率无论多高，都只在函数最后一次执行结束后，间隔一定的事件执行一次。 实现节流 创造  123456789101112function createThrottle(delay, callback) &amp;#123;    let allowed &#x3D; true;    return func">
 <meta property="og:type" content="article">
 <meta property="og:title" content="节流与防抖">
 <meta property="og:url" content="https://jerryfangr.github.io/2021/01/21/%E8%8A%82%E6%B5%81%E4%B8%8E%E9%98%B2%E6%8A%96/index.html">
 <meta property="og:site_name" content="jerryfang blog">
-<meta property="og:description" content="介绍节流与防抖属于性能优化的一种手段。节流：函数执行频率无论多高，都只按一定间隔时间触发一次。防抖：函数执行频率无论多高，都只在函数最后一次执行结束后，间隔一定的事件执行一次。 实现节流 创造  123456789101112function createThrottle(delay, callback) &amp;#123;    let allowed &#x3D; true;    return functi">
+<meta property="og:description" content="介绍节流与防抖属于性能优化的一种手段。 节流：函数执行频率无论多高，都只按一定间隔时间触发一次。 防抖：函数执行频率无论多高，都只在函数最后一次执行结束后，间隔一定的事件执行一次。 实现节流 创造  123456789101112function createThrottle(delay, callback) &amp;#123;    let allowed &#x3D; true;    return func">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-21T11:04:32.000Z">
-<meta property="article:modified_time" content="2021-01-20T16:06:46.229Z">
+<meta property="article:modified_time" content="2021-04-16T10:44:32.429Z">
 <meta property="article:author" content="jerry fang">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="学习笔记">
@@ -171,7 +171,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>节流与防抖属于性能优化的一种手段。</strong><br><strong>节流：函数执行频率无论多高，都只按一定间隔时间触发一次。</strong><br><strong>防抖：函数执行频率无论多高，都只在函数最后一次执行结束后，间隔一定的事件执行一次。</strong><br><br></p>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>节流与防抖属于性能优化的一种手段。</strong></p>
+<p><strong>节流：函数执行频率无论多高，都只按一定间隔时间触发一次。</strong></p>
+<p><strong>防抖：函数执行频率无论多高，都只在函数最后一次执行结束后，间隔一定的事件执行一次。</strong><br><br></p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h3><ul>
 <li><strong>创造</strong></li>
 </ul>
@@ -210,7 +212,8 @@
 
 
 
-<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>节流与防抖实现简单，主要巧妙利用了计时器和闭包的特性。<br>节流与防抖具有较高的实用性，如节流可以监听触发频率过高的滚动事件。防抖可以用于检测用户输入，输入停止后向数据库发送检查内容等等。</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>节流与防抖实现简单，主要巧妙利用了计时器和闭包的特性。</p>
+<p>节流与防抖具有较高的实用性，如节流可以监听触发频率过高的滚动事件。防抖可以用于检测用户输入，输入停止后向数据库发送检查内容等等。</p>
 
       
 

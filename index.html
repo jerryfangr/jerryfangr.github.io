@@ -527,7 +527,7 @@
 <li>每次全部读写整个文件，注定单文件不能存放太多的数据。</li>
 <li>需要对特殊字符进行下转义</li>
 <li>数据过滤在一些&gt; &lt; &gt;= 的情况下反而麻烦了不少</li>
-<li>…</li>
+<li>……</li>
 </ol>
 <p>不过本来就是设计用来写写demo的，也算够了</p>
 <p>​    </p>
@@ -776,7 +776,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="开头"><a href="#开头" class="headerlink" title="开头"></a>开头</h2><p><strong>Promise作为ES6标准中提出的一种新的异步解决方案，给前端带来了深远的影响。</strong><br><strong>如果你对浏览器的宏微任务有了解，那么应该知道Promise.then会产生微任务。</strong><br><strong>本篇尝试解析还原一个Promise的构造和then方法</strong></p>
+        <h2 id="开头"><a href="#开头" class="headerlink" title="开头"></a>开头</h2><p><strong>Promise作为ES6标准中提出的一种新的异步解决方案，给前端带来了深远的影响。</strong></p>
+<p><strong>如果你对浏览器的宏微任务有了解，那么应该知道Promise.then会产生微任务。</strong></p>
+<p><strong>本篇尝试解析还原一个Promise的构造和then方法</strong></p>
 <br>
 
 
@@ -947,7 +949,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>节流与防抖属于性能优化的一种手段。</strong><br><strong>节流：函数执行频率无论多高，都只按一定间隔时间触发一次。</strong><br><strong>防抖：函数执行频率无论多高，都只在函数最后一次执行结束后，间隔一定的事件执行一次。</strong><br><br></p>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>节流与防抖属于性能优化的一种手段。</strong></p>
+<p><strong>节流：函数执行频率无论多高，都只按一定间隔时间触发一次。</strong></p>
+<p><strong>防抖：函数执行频率无论多高，都只在函数最后一次执行结束后，间隔一定的事件执行一次。</strong><br><br></p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h3><ul>
 <li><strong>创造</strong></li>
 </ul>
@@ -986,7 +990,8 @@
 
 
 
-<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>节流与防抖实现简单，主要巧妙利用了计时器和闭包的特性。<br>节流与防抖具有较高的实用性，如节流可以监听触发频率过高的滚动事件。防抖可以用于检测用户输入，输入停止后向数据库发送检查内容等等。</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>节流与防抖实现简单，主要巧妙利用了计时器和闭包的特性。</p>
+<p>节流与防抖具有较高的实用性，如节流可以监听触发频率过高的滚动事件。防抖可以用于检测用户输入，输入停止后向数据库发送检查内容等等。</p>
 
       
 
@@ -1351,7 +1356,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>在javascript的判断符号中，除了<code>==</code>还有<code>===</code>。</strong></p>
-<p><strong>但在使用中你会发现，<code>===</code>跟其他编程语言中的判断符号相差无几，<code>==</code>反而不一样，它有独特的个性。</strong></p>
+<p><strong>但在使用中，<code>===</code>跟其他编程语言中的判断符号相差无几，<code>==</code>反而不一样。</strong></p>
 <p><strong>以下我主要会对<code>==</code>的特性进行简单概括。</strong><br><br></p>
 <h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
 <li><code>===</code>，判断符号两端的类型与数值，当类型与数值都相同时才认为双方相同。</li>

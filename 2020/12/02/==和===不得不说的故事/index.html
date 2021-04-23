@@ -16,7 +16,7 @@
 <meta property="og:description" content="介绍在javascript的判断符号中，除了&#x3D;&#x3D;还有&#x3D;&#x3D;&#x3D;。 但在使用中，&#x3D;&#x3D;&#x3D;跟其他编程语言中的判断符号相差无几，&#x3D;&#x3D;反而不一样。 以下我主要会对&#x3D;&#x3D;的特性进行简单概括。 特性 &#x3D;&#x3D;&#x3D;，判断符号两端的类型与数值，当类型与数值都相同时才认为双方相同。 &#x3D;&#x3D;，基本与上面一样，但符号两端的类型为基本(简单)类型时，会进行一定转换后判断。      示例number &#x3D;&#x3D; string双方会转成stri">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-02T09:37:51.000Z">
-<meta property="article:modified_time" content="2021-04-20T11:09:47.475Z">
+<meta property="article:modified_time" content="2021-04-22T11:16:25.694Z">
 <meta property="article:author" content="jerry fang">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="学习笔记">
@@ -217,7 +217,9 @@
 
 
 
-<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>尝试习惯用<code>===</code>来判断，少用<code>==</code>，这会让你避免不少问题。</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p><code>==</code>虽然能省去了部分类型的转换工作，却埋下了更多的隐患。</p>
+<p>假想一下当项目够大时，一个<code>==</code>带来的错误会需要耗费多大精力才能找到。</p>
+<p>回归<code>===</code>，淳朴自然精准。</p>
 
       
 
